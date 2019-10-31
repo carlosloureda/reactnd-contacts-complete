@@ -4889,6 +4889,11 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.11.0.tgz#b85dfecd48ad1ce469ff558a882ca8e8313928fa"
   integrity sha512-gbBVYR2p8mnriqAwWx9LbuUrShnAuSCNnuPGyc7GJrMVQtPDAh8iLpv7FRuMPFb56KkaVZIYSz1PrjI9q0QPCw==
 
+react-mock-router@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/react-mock-router/-/react-mock-router-1.0.15.tgz#01c823a7ed366e7e834565e879bc72443131b4e1"
+  integrity sha1-Acgjp+02bn6DRWXoebxyRDExtOE=
+
 react-router-dom@^4.1.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.3.1.tgz#4c2619fc24c4fa87c9fd18f4fb4a43fe63fbd5c6"
