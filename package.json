@@ -3,16 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@testing-library/react": "^9.3.1",
     "escape-string-regexp": "^1.0.5",
     "form-serialize": "^0.7.2",
-    "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-mock-router": "^1.0.15",
     "react-router-dom": "^4.1.1",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "react-scripts": "1.0.7"
   },
   "scripts": {
