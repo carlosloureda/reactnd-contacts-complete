@@ -9,13 +9,13 @@
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
-    "react-mock-router": "^1.0.15",
     "react-router-dom": "^4.1.1",
     "sort-by": "^1.2.0"
   },
   "devDependencies": {
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
+    "react-mock-router": "^1.0.15",
     "react-scripts": "1.0.7"
   },
   "scripts": {
