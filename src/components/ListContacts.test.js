@@ -90,74 +90,22 @@ test("<ListContacts/> renders properly", () => {
 });
 
 test("<ListContacts/> deletes contact properly", () => {
-  //   Search: update and clearQuery
-
-  // With filtered contacts has an special form
-  // list contacts
   const onDeleteContactMock = jest.fn();
-  const container = document.createElement("div");
-  ReactDOM.render(
-    <MockRouter>
-      <ListContacts
-        contacts={fakeContacts}
-        onDeleteContact={onDeleteContactMock}
-      />
-    </MockRouter>,
-    container
+  const listContacts = shallow(
+    <ListContacts
+      contacts={fakeContacts}
+      onDeleteContact={onDeleteContactMock}
+    />
   );
+  listContacts
+    .find(".contact-remove")
+    .first()
+    .simulate("click");
 
-  const wrapper = mount(
-    <MockRouter>
-      <ListContacts
-        contacts={fakeContacts}
-        onDeleteContact={onDeleteContactMock}
-      />
-    </MockRouter>
-  );
-
-  const buttons = container.querySelector(".contact-remove");
-  console.log("buttons: ", buttons);
-
-  buttons.onclick();
-  buttons.onclick();
-
-  buttons.onclick();
-
-  buttons.onclick();
-  expect(onDeleteContactMock.mock.calls.length).toHaveBeenCalledTimes(1);
-
-  const contactsItems = container.getElementsByClassName("contact-list-item");
-  expect(contactsItems).toBeDefined();
-  expect(contactsItems).toHaveLength(3);
-
-  const firstContact = contactsItems[0];
-  expect(firstContact.getElementsByClassName("contact-avatar")).toBeDefined();
-  expect(
-    firstContact.getElementsByClassName("contact-avatar")[0].style[
-      "background-image"
-    ]
-  ).toBe("url(" + fakeContacts[0].avatarURL + ")");
-  expect(
-    firstContact.getElementsByClassName("contact-details")[0].textContent
-  ).toBe(fakeContacts[0].name + fakeContacts[0].email);
-
-  const second = contactsItems[1];
-  expect(second.getElementsByClassName("contact-avatar")).toBeDefined();
-  expect(
-    second.getElementsByClassName("contact-avatar")[0].style["background-image"]
-  ).toBe("url(" + fakeContacts[1].avatarURL + ")");
-  expect(second.getElementsByClassName("contact-details")[0].textContent).toBe(
-    fakeContacts[1].name + fakeContacts[1].email
-  );
-
-  const third = contactsItems[2];
-  expect(third.getElementsByClassName("contact-avatar")).toBeDefined();
-  expect(
-    third.getElementsByClassName("contact-avatar")[0].style["background-image"]
-  ).toBe("url(" + fakeContacts[2].avatarURL + ")");
-  expect(third.getElementsByClassName("contact-details")[0].textContent).toBe(
-    fakeContacts[2].name + fakeContacts[2].email
-  );
+  expect(onDeleteContactMock.mock.calls).toHaveLength(1);
+  expect(onDeleteContactMock.mock.calls[0][0]).toBe(fakeContacts[0]);
 });
 
-// Searches and works
+//   Search: update and clearQuery
+// With filtered contacts has an special form
+// list contacts
