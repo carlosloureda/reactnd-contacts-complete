@@ -106,6 +106,61 @@ test("<ListContacts/> deletes contact properly", () => {
   expect(onDeleteContactMock.mock.calls[0][0]).toBe(fakeContacts[0]);
 });
 
-//   Search: update and clearQuery
-// With filtered contacts has an special form
-// list contacts
+test("<ListContacts/> has a link to create contact", () => {
+  const onDeleteContactMock = jest.fn();
+
+  const listContact = shallow(
+    <ListContacts
+      contacts={fakeContacts}
+      onDeleteContact={onDeleteContactMock}
+    />
+  );
+
+  const addContact = listContact.find(".add-contact");
+  expect(addContact).toBeDefined();
+  expect(addContact).toHaveLength(1);
+  expect(listContact.find(".add-contact").prop("to")).toBe("/create");
+});
+
+test("<ListContacts/> search bar", () => {
+  const onDeleteContactMock = jest.fn();
+
+  const listContact = shallow(
+    <ListContacts
+      contacts={fakeContacts}
+      onDeleteContact={onDeleteContactMock}
+    />
+  );
+
+  const searchContact = listContact.find(".search-contacts");
+  expect(searchContact).toBeDefined();
+  expect(searchContact).toHaveLength(1);
+  expect(searchContact.text()).toBe("");
+
+  // Filter by first user
+  const event = {
+    preventDefault() {},
+    target: { value: fakeContacts[0].name }
+  };
+  listContact.find(".search-contacts").simulate("change", event);
+  expect(listContact.state("query")).toEqual(event.target.value);
+
+  //  check that only shows 1 user
+  listContact.update();
+  let contactsItems = listContact.find(".contact-list-item");
+  expect(contactsItems).toBeDefined();
+  expect(contactsItems.length).toBe(1);
+
+  // Clear query
+  listContact
+    .find(".showing-contacts")
+    .find("button")
+    .simulate("click");
+  expect(listContact.state("query")).toEqual("");
+
+  // Should show 3 users now
+  listContact.update();
+  contactsItems = listContact.find(".contact-list-item");
+  expect(contactsItems).toBeDefined();
+  expect(contactsItems.length).toBe(3);
+});
